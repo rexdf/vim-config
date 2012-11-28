@@ -413,6 +413,8 @@ if has("autocmd")
     autocmd!
     autocmd BufNewFile,BufRead mutt-* setl textwidth=72
   augroup END
+
+  au! BufRead,BufNewFile *.rl   set filetype=ragel
 end
 
 function! Cfind(...)
