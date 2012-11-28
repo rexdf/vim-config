@@ -157,7 +157,6 @@ let g:netrw_hide=1
 let g:netrw_list_hidee='\..*\.sw[pon]$'
 
 let g:rails_statusline=0
-let g:LustyJugglerSuppressRubyWarning=1
 
 " CScope
 if has("cscope")

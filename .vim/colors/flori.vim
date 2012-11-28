@@ -41,9 +41,9 @@ hi Pmenu guifg=grey40 guibg=#c2bfa5 gui=NONE ctermbg=darkgrey ctermfg=lightgrey
 hi PmenuSel guifg=white guibg=grey40 gui=NONE ctermbg=red ctermfg=lightred
 hi PmenuSbar guifg=black guibg=grey30 ctermfg=white ctermbg=blue
 hi PmenuThumb guifg=black guibg=white ctermfg=white ctermbg=black
-hi Cursor guibg=khaki guifg=slategrey
-hi CursorIM guibg=khaki guifg=slategrey
-hi Visual guifg=NONE guibg=peru
+hi Cursor guibg=red guifg=white
+hi CursorIM guibg=red guifg=white
+hi Visual guifg=NONE guibg=#fed37f
 hi VisualNOS guifg=NONE guibg=grey25 gui=none
 
 " syntax highlighting groups
