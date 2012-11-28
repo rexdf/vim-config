@@ -5,5 +5,5 @@ ln -sf `pwd`/.vim $HOME/.vim
 for plugin in vim-plugins/*/
 do
   p=`basename $plugin`
-  stow --verbose --dir=vim-plugins --target=.vim "$p"
+  stow --verbose --dir=vim-plugins --target=.vim --override=.*\\.markdown "$p"
 done

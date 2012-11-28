@@ -205,7 +205,7 @@ if has("fullscreen")
   if has("gui_mac")  || has("gui_macvim")
     map <silent> <D-Enter> :call Cfullscreen()<CR>
   end
-  au GUIEnter * set fullscreen
+  "au GUIEnter * set fullscreen
 end
 function! Ctoggle()
   if &buftype == "quickfix"
