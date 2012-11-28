@@ -6,5 +6,5 @@ git clean -fdx
 for plugin in vim-plugins/*/
 do
   p=`basename $plugin`
-  stow --verbose --dir=vim-plugins --target=.vim --override='.*' "$p"
+  stow --verbose --dir=vim-plugins --target=.vim --defer='(Readme|README|readme|cecutil)' "$p"
 done
