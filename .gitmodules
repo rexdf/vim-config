@@ -40,3 +40,6 @@
 [submodule "vim-plugins/vim-coffee-script.git"]
 	path = vim-plugins/vim-coffee-script.git
 	url = https://github.com/kchmck/vim-coffee-script.git
+[submodule "vim-plugins/Align.git"]
+	path = vim-plugins/Align.git
+	url = https://github.com/vim-scripts/Align.git

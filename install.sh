@@ -2,6 +2,7 @@
 
 ln -sf `pwd`/.vimrc $HOME/.vimrc
 ln -sf `pwd`/.vim $HOME/.vim
+git clean -fdx
 for plugin in vim-plugins/*/
 do
   p=`basename $plugin`
