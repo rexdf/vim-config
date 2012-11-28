@@ -158,6 +158,8 @@ let g:netrw_list_hidee='\..*\.sw[pon]$'
 
 let g:rails_statusline=0
 
+let g:Tlist_WinWidth=70
+
 " CScope
 if has("cscope")
 "  set csprg=/usr/local/bin/cscope
@@ -180,7 +182,8 @@ let maplocalleader=","
 " open another file in this files directory
 map <leader>e :e <C-R>=substitute(expand("%:p:h") . "/", " ", "\\\\ ", "g")<CR>
 map <leader>n :call Cnavigate()
-map <leader>t :tabe <C-R>=substitute(expand("%:p:h") . "/", " ", "\\\\ ", "g")<CR>
+map <leader>t :TlistToggle<CR>
+map <leader>T :tabe <C-R>=substitute(expand("%:p:h") . "/", " ", "\\\\ ", "g")<CR>
 map <leader>s :split <C-R>=substitute(expand("%:p:h") . "/", " ", "\\\\ ", "g")<CR>
 map <leader>c :cd <C-R>=substitute(expand("%:p:h") . "/", " ", "\\\\ ", "g")<CR>
 map <leader>h :call Csymbolhash()<CR>
@@ -204,7 +207,7 @@ if has("fullscreen")
   if has("gui_mac")  || has("gui_macvim")
     map <silent> <D-Enter> :call Cfullscreen()<CR>
   end
-  "au GUIEnter * set fullscreen
+  au GUIEnter * set fullscreen
 end
 function! Ctoggle()
   if &buftype == "quickfix"
