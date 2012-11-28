@@ -43,7 +43,7 @@ hi PmenuSbar guifg=black guibg=grey30 ctermfg=white ctermbg=blue
 hi PmenuThumb guifg=black guibg=white ctermfg=white ctermbg=black
 hi Cursor guibg=red guifg=white
 hi CursorIM guibg=red guifg=white
-hi Visual guifg=NONE guibg=#fed37f
+hi Visual guifg=NONE guibg=#7f693f
 hi VisualNOS guifg=NONE guibg=grey25 gui=none
 
 " syntax highlighting groups
