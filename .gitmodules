@@ -19,3 +19,9 @@
 [submodule "vim-plugins/ruby-matchit"]
 	path = vim-plugins/ruby-matchit
 	url = https://github.com/vim-scripts/ruby-matchit.git
+[submodule "vim-plugins/bufexplorer.zip.git"]
+	path = vim-plugins/bufexplorer.zip.git
+	url = https://github.com/vim-scripts/bufexplorer.zip.git
+[submodule "vim-plugins/taglist.vim.git"]
+	path = vim-plugins/taglist.vim.git
+	url = https://github.com/vim-scripts/taglist.vim.git
