@@ -9,7 +9,7 @@ set backspace=indent,eol,start
 if exists('&colorcolumn')
   set colorcolumn=79
 end
-set textwidth=80
+"set textwidth=80
 set dictionary=/usr/dict/words
 set nodigraph
 set encoding=utf8
