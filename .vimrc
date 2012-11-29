@@ -189,8 +189,11 @@ map <leader>c :cd <C-R>=substitute(expand("%:p:h") . "/", " ", "\\\\ ", "g")<CR>
 map <leader>h :call Csymbolhash()<CR>
 map <leader>H :%call Csymbolhash()<CR>
 map <leader>C :call Ccamelunderscore()<CR>
-map <leader>f :!echo %\|pbcopy<CR><CR>
+map <leader>f :!echo %\|pbcopy<CR>
 map <leader>n :new <cfile><CR>
+map <leader>p :silent call system(join([ 'probe', '-c', join([ expand('%'), line('.') ], ':') ], ' '))<CR>
+map <leader>P :silent !probe -c %<CR>
+map K :Grep <cword><CR>
 
 " Switch of search highlighting
 map <silent> <F9> :nohlsearch<CR>
@@ -291,19 +294,19 @@ if has("autocmd")
 
   augroup tex
     autocmd!
-    autocmd FileType tex map <buffer> <F1> <ESC>:!latex %<CR><CR>
-    autocmd FileType tex map <buffer> <F2> <ESC>:!dvips `echo %\|sed -e 's/tex/dvi/'`<CR><CR>
-    autocmd FileType tex map <buffer> <F3> <ESC><F1>:!xdvi -s 0 `echo %\|sed -e 's/tex/dvi/'` &<CR><CR>
-    autocmd FileType tex map <buffer> <F4> <ESC><F1><F2>:!gv `echo %\|sed -e 's/tex/ps/'` &<CR><CR>
-    autocmd FileType tex map <buffer> <F5> <ESC>:!pdflatex %<CR><CR><CR>
-    autocmd FileType tex map <buffer> <F6> <ESC><F1>:!acroread `echo %\|sed -e 's/tex/pdf/'`<CR><CR>
+    autocmd FileType tex map <buffer> <F1> <ESC>:silent !latex %<CR>
+    autocmd FileType tex map <buffer> <F2> <ESC>:silent !dvips `echo %\|sed -e 's/tex/dvi/'`<CR>
+    autocmd FileType tex map <buffer> <F3> <ESC><F1>:!xdvi -s 0 `echo %\|sed -e 's/tex/dvi/'` &<CR>
+    autocmd FileType tex map <buffer> <F4> <ESC><F1><F2>:silent !gv `echo %\|sed -e 's/tex/ps/'` &<CR>
+    autocmd FileType tex map <buffer> <F5> <ESC>:silent !pdflatex %<CR>
+    autocmd FileType tex map <buffer> <F6> <ESC><F1>:silent !acroread `echo %\|sed -e 's/tex/pdf/'`<CR>
   augroup END
 
   augroup c
     autocmd!
     autocmd FileType c setl sw=4 ts=4 cinoptions= formatoptions=cqrol cindent
     autocmd FileType c map <buffer> <F1> <ESC>:make<CR>
-    autocmd FileType c map <buffer> <F2> <ESC>:%!indent 2>/dev/null -kr -i 4<CR><CR>
+    autocmd FileType c map <buffer> <F2> <ESC>:silent %!indent 2>/dev/null -kr -i 4<CR>
     autocmd FileType c map <buffer> <F3> <ESC>:make clean<CR>
     autocmd FileType c map <buffer> <F4> <ESC><Home>i/* <ESC><End>a */<ESC>
   augroup END
@@ -328,18 +331,9 @@ if has("autocmd")
 
   augroup ruby
     autocmd!
-    autocmd FileType ruby setl et sw=2 ts=2 autoindent keywordprg=ri\ --no-pager
-    autocmd FileType ruby map <buffer> <F1> <ESC>:w<CR><ESC>:!RUBYOPT="$RUBYOPT -Iext:lib:test:tests" ruby -wc %<CR>
-    autocmd FileType ruby map <buffer> <F2> <ESC>:w<CR><ESC>:!RUBYOPT="$RUBYOPT -Iext:lib:test:tests" ruby % \| ruby -S decolor<CR>
-    autocmd FileType ruby map <buffer> <F3> <ESC>:w<CR><ESC>:!rcov -Iext:lib:test:tests %<CR>
-    autocmd FileType ruby map <buffer> <F4> <ESC><Home>i#<ESC>
-    autocmd FileType ruby map <buffer> <silent> <F5> !xmp ruby<cr>
-    autocmd FileType ruby nmap <buffer> <silent> <F5> V<F5>
-    autocmd FileType ruby imap <buffer> <silent> <F5> <ESC><F5>a
-    autocmd FileType ruby map <buffer> <silent> <F6> <ESC>:w<CR><ESC>:%!xmp ruby -Iext:lib -w<CR>
-    autocmd FileType ruby map <buffer> <silent> <F7> <ESC>:w<CR><ESC>:%!RUBYOPT="" xmp /usr/local/ruby-1.9/bin/ruby -Iext:lib -w <CR>
-    autocmd FileType ruby map <buffer> <silent> <F8> <ESC>:!exuberant-ctags 2>/dev/null -R .<CR>
+    autocmd FileType ruby setl et sw=2 ts=2 autoindent
     autocmd FileType ruby setl suffixesadd=.rb,.h,.c
+    autocmd FileType ruby setl path+=ext/**
     autocmd FileType ruby setl path+=lib/**
     autocmd FileType ruby setl path+=test/**
     autocmd FileType ruby setl path+=tests/**
@@ -387,20 +381,20 @@ if has("autocmd")
     autocmd BufNewFile,BufRead *.jsf,*.jsp,*.babel,*.konfetti,*.tag,*.tld setl filetype=xml
     autocmd FileType xml setl et sw=2 ts=2 autoindent
     autocmd FileType xml map <buffer> <F1> <ESC>:w<CR><ESC>:!tidy -xml -raw -e %<CR>
-    autocmd FileType xml map <buffer> <F2> <ESC>:%!tidy -xml -raw -i 2>/dev/null<CR><CR>
+    autocmd FileType xml map <buffer> <F2> <ESC>:silent %!tidy -xml -raw -i 2>/dev/null<CR>
   augroup END
 
   augroup html
     autocmd!
     autocmd FileType xml setl et sw=2 ts=2 autoindent
     autocmd FileType html map <buffer> <F1> <ESC>:w<CR><ESC>:!tidy -e %<CR>
-    autocmd FileType html map <buffer> <F2> <ESC>:%!tidy -wrap 72 -iu 2>/dev/null<CR><CR>
+    autocmd FileType html map <buffer> <F2> <ESC>:silent %!tidy -wrap 72 -iu 2>/dev/null<CR>
   augroup END
 
   augroup html2
     autocmd!
     autocmd BufReadPre,FileReadPre *.html.* map <buffer> <F1> <ESC>:w<CR><ESC>:!tidy -e %<CR>
-    autocmd BufReadPre,FileReadPre *.html.* map <buffer> <F2> <ESC>:%!tidy -wrap 72 -iu 2>/dev/null<CR><CR>
+    autocmd BufReadPre,FileReadPre *.html.* map <buffer> <F2> <ESC>:silent %!tidy -wrap 72 -iu 2>/dev/null<CR>
     autocmd BufReadPre,FileReadPre *.html.* so $VIMRUNTIME/syntax/html.vim
   augroup END
 
