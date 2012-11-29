@@ -181,7 +181,7 @@ let mapleader=","
 let maplocalleader=","
 " open another file in this files directory
 map <leader>e :e <C-R>=substitute(expand("%:p:h") . "/", " ", "\\\\ ", "g")<CR>
-map <leader>n :call Cnavigate()
+map <leader>N :call Cnavigate()<CR>
 map <leader>t :TlistToggle<CR>
 map <leader>T :tabe <C-R>=substitute(expand("%:p:h") . "/", " ", "\\\\ ", "g")<CR>
 map <leader>s :split <C-R>=substitute(expand("%:p:h") . "/", " ", "\\\\ ", "g")<CR>
@@ -497,18 +497,18 @@ function! Csymbolhash() range
   execute join([ 'silent ', a:firstline, ',', a:lastline, 's/\([^:]\):\([^:=!', "'", '" ]\{1,\}\) *=>/\1\2:/g' ])
 endfunction
 
-function! Cnavigate()
-  let where = input("Goto? ")
-  call system("edit " . where)
-endfunction
-
 function! Ccreatetags()
-  call system("bundle execute create_tags")
+  call system("create_tags")
 endfunction
 
 function! PrintGivenRange() range
     echo "firstline ".a:firstline." lastline ".a:lastline
     " Do some more things
+endfunction
+
+function! Cedit(...)
+  let args = copy(a:000)
+  call system("edit " . join(map(copy(args), 'shellescape(v:val)'), ' ') . ' &')
 endfunction
 
 command! -bar -nargs=1 OpenURL :!open <args>
@@ -521,6 +521,7 @@ command! -bar -nargs=* -complete=file Declassify call Cdeclassify(<f-args>)
 command! Createtags call Ccreatetags()
 command! -range Symbolhash <line1>,<line2>call Csymbolhash()
 command! -range PrintGivenRange <line1>,<line2>call PrintGivenRange()
+command! -nargs=* -complete=file Edit call Cedit(<f-args>)
 
 function! Iexec(cmd)
   let output = system(a:cmd)
