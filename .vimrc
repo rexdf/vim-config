@@ -185,14 +185,15 @@ map <leader>N :call Cnavigate()<CR>
 map <leader>t :TlistToggle<CR>
 map <leader>T :tabe <C-R>=substitute(expand("%:p:h") . "/", " ", "\\\\ ", "g")<CR>
 map <leader>s :split <C-R>=substitute(expand("%:p:h") . "/", " ", "\\\\ ", "g")<CR>
+map <leader>v :!ruby -wc %<CR>
 map <leader>c :cd <C-R>=substitute(expand("%:p:h") . "/", " ", "\\\\ ", "g")<CR>
 map <leader>h :call Csymbolhash()<CR>
 map <leader>H :%call Csymbolhash()<CR>
 map <leader>C :call Ccamelunderscore()<CR>
 map <leader>f :!echo %\|pbcopy<CR>
 map <leader>n :new <cfile><CR>
-map <leader>p :silent call system(join([ 'probe', '-c', join([ expand('%'), line('.') ], ':') ], ' '))<CR>
-map <leader>P :silent !probe -c %<CR>
+map <leader>p :silent call system(join([ 'probe', '-c', join([ expand('%'), line('.') ], ':') ], ' ') . ' &')<CR>
+map <leader>P :silent call system('probe -c ' . expand('%') . ' &')<CR>
 map K :Grep <cword><CR>
 
 " Switch of search highlighting
