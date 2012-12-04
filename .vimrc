@@ -499,7 +499,7 @@ function! Csymbolhash() range
 endfunction
 
 function! Ccreatetags()
-  call system("create_tags")
+  call system("create_tags &")
 endfunction
 
 function! PrintGivenRange() range
