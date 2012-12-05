@@ -194,6 +194,8 @@ map <leader>f :!echo %\|pbcopy<CR>
 map <leader>n :new <cfile><CR>
 map <leader>p :silent call system(join([ 'probe', '-c', join([ expand('%'), line('.') ], ':') ], ' ') . ' &')<CR>
 map <leader>P :silent call system('probe -c ' . expand('%') . ' &')<CR>
+map <leader>l :silent call system('irb_connect -l ' . expand('%') . ' &')<CR>
+map <leader>L :silent call system('irb_connect -e "reload!"')<CR>
 map K :Grep <cword><CR>
 
 " Switch of search highlighting
