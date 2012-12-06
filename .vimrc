@@ -181,7 +181,6 @@ let mapleader=","
 let maplocalleader=","
 " open another file in this files directory
 map <leader>e :e <C-R>=substitute(expand("%:p:h") . "/", " ", "\\\\ ", "g")<CR>
-map <leader>N :call Cnavigate()<CR>
 map <leader>t :TlistToggle<CR>
 map <leader>T :tabe <C-R>=substitute(expand("%:p:h") . "/", " ", "\\\\ ", "g")<CR>
 map <leader>s :split <C-R>=substitute(expand("%:p:h") . "/", " ", "\\\\ ", "g")<CR>
@@ -196,6 +195,8 @@ map <leader>p :silent call system(join([ 'probe', '-c', join([ expand('%'), line
 map <leader>P :silent call system('probe -c ' . expand('%') . ' &')<CR>
 map <leader>l :silent call system('irb_connect -l ' . expand('%') . ' &')<CR>
 map <leader>L :silent call system('irb_connect -e "reload!"')<CR>
+map <leader>E :call Cirb_eval()<CR>
+
 map K :Grep <cword><CR>
 
 " Switch of search highlighting
@@ -512,6 +513,11 @@ endfunction
 function! Cedit(...)
   let args = copy(a:000)
   call system("edit " . join(map(copy(args), 'shellescape(v:val)'), ' ') . ' &')
+endfunction
+
+function! Cirb_eval()
+  y
+  echo getreg('"')
 endfunction
 
 command! -bar -nargs=1 OpenURL :!open <args>
