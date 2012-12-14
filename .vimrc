@@ -511,7 +511,7 @@ endfunction
 
 function! Cedit(...)
   let args = copy(a:000)
-  call system("edit " . join(map(copy(args), 'shellescape(v:val)'), ' ') . ' &')
+  call system("edit -m " . join(map(copy(args), 'shellescape(v:val)'), ' ') . ' &')
 endfunction
 
 function! Cirb_eval()
