@@ -105,7 +105,6 @@ if has("gui_running")
     end
     set guiheadroom=0
     set columns=80
-    set lines=59
   elseif has("gui_mac") || has("gui_macvim")
     set guifont=DejaVu\ Sans\ Mono:h14
     if exists("+guioptions")
@@ -117,7 +116,6 @@ if has("gui_running")
     set guiheadroom=0
     "set macatsui
     set columns=160
-    set lines=86
   elseif has("x11")
     set guifont=-b&h-lucidatypewriter-*-*-normal-*-17-*-*-*-*-*-iso10646-*
     if exists("+guioptions")
@@ -125,6 +123,7 @@ if has("gui_running")
       set guioptions-=m
     end
   end
+  set lines=999
 else
   hi DiffAdd ctermbg=green
   hi DiffChange ctermbg=blue
@@ -213,7 +212,7 @@ if has("fullscreen")
   if has("gui_mac")  || has("gui_macvim")
     map <silent> <D-Enter> :call Cfullscreen()<CR>
   end
-  au GUIEnter * set fullscreen
+  " au GUIEnter * set fullscreen
 end
 function! Ctoggle()
   if &buftype == "quickfix"
