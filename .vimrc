@@ -22,7 +22,6 @@ set hidden
 set history=1000
 set hlsearch
 set laststatus=2
-set makeprg=errf
 set modelines=5
 set mousehide
 set mouse=nv
@@ -195,6 +194,7 @@ map <leader>P :w<CR>:silent call system('probe -c ' . expand('%') . ' &')<CR>
 map <leader>l :w<CR>:silent call system('irb_connect -l ' . expand('%') . ' &')<CR>
 map <leader>L :w<CR>:silent call system('irb_connect -e "reload!"')<CR>
 map <leader>E :call Cirb_eval()<CR>
+map <leader>g :call Cgrep(input("Grep? "))<CR>
 map K :Grep <cword><CR>
 
 " Switch of search highlighting
@@ -448,16 +448,6 @@ function! Cgrep(...)
   redraw!
 endfunction
 
-function! Ctest(...)
-  execute 'w'
-  if a:0 == 0
-    let name = expand('<cword>')
-  else
-    let name = a:1
-  end
-  execute 'make ' . expand('%') . ' ' . name
-endfunction
-
 function! Cclassify(...)
   if a:0 == 0
     let args = [ expand( '<cword>') ]
@@ -521,7 +511,6 @@ endfunction
 command! -bar -nargs=1 OpenURL :!open <args>
 command! -bar -nargs=* -complete=file Find call Cfind(<f-args>)
 command! -bar -nargs=* -complete=file Grep call Cgrep(<f-args>)
-command! -bar -nargs=* -complete=file Test call Ctest(<f-args>)
 command! -bar -nargs=* -complete=file Classify call Cclassify(<f-args>)
 command! -bar -nargs=* -complete=file PathClassify call CpathClassify(<f-args>)
 command! -bar -nargs=* -complete=file Declassify call Cdeclassify(<f-args>)
