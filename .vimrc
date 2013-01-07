@@ -443,7 +443,7 @@ function! Cgrep(...)
   set grepprg=search
   set hlsearch
   let @/=args[0]
-  silent execute "silent gr -c " . args_string
+  silent execute "silent gr -i -c " . args_string
   copen
   redraw!
 endfunction
