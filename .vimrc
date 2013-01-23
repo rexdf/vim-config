@@ -505,7 +505,7 @@ endfunction
 
 function! Cirb_eval()
   y
-  echo getreg('"')
+  call system("irb_connect -e '" . getreg('"') . "' &")
 endfunction
 
 command! -bar -nargs=1 OpenURL :!open <args>
