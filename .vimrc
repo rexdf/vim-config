@@ -195,6 +195,8 @@ map <leader>l :w<CR>:silent call system('irb_connect -l ' . expand('%') . ' &')<
 map <leader>L :w<CR>:silent call system('irb_connect -e "reload!"')<CR>
 map <leader>E :call Cirb_eval()<CR>
 map <leader>g :call Cgrep(input("Grep? "))<CR>
+map <leader>d :call Cremove()<CR>
+map <leader>D :call Cremove('force')<CR>
 map K :Grep <cword><CR>
 
 " Switch of search highlighting
@@ -501,6 +503,20 @@ endfunction
 function! Cedit(...)
   let args = copy(a:000)
   call system("edit -m " . join(map(copy(args), 'shellescape(v:val)'), ' ') . ' &')
+endfunction
+
+function! Cremove(...)
+  let answer = input('Really delete "' . expand('%') . '" (y/n)? ')
+  if answer =~ "^[Yy]"
+    call system('rm -f ' . expand('%p'))
+    if a:0 == 1 && a:1 == 'force'
+      bd
+    endif
+    redraw!
+    echo 'Done.'
+  else
+    redraw!
+  endif
 endfunction
 
 function! Cirb_eval()
