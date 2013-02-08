@@ -393,6 +393,12 @@ if has("autocmd")
     autocmd FileType html map <buffer> <F2> <ESC>:silent %!tidy -wrap 72 -iu 2>/dev/null<CR>
   augroup END
 
+  augroup ino
+    autocmd!
+    autocmd BufNewFile,BufRead *.ino setl filetype=c
+    autocmd FileType ino setl et sw=2 ts=2 autoindent
+  augroup END
+
   augroup html2
     autocmd!
     autocmd BufReadPre,FileReadPre *.html.* map <buffer> <F1> <ESC>:w<CR><ESC>:!tidy -e %<CR>
