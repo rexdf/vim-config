@@ -30,7 +30,7 @@ set nocompatible
 set nocursorcolumn
 set nocursorline
 set nofoldenable
-set noignorecase
+set ignorecase
 set noincsearch
 set nojoinspaces
 set nopaste
