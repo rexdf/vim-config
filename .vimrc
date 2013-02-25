@@ -498,7 +498,7 @@ function! Csymbolhash() range
 endfunction
 
 function! Ccreatetags()
-  call system("create_tags &")
+  call system("bundle exec create_tags &")
 endfunction
 
 function! PrintGivenRange() range
@@ -516,7 +516,7 @@ function! Cremove(...)
   if answer =~ "^[Yy]"
     call system('rm -f ' . expand('%p'))
     if a:0 == 1 && a:1 == 'force'
-      bd
+      bd!
     endif
     redraw!
     echo 'Done.'
@@ -560,4 +560,5 @@ iabbrev I_CLASS <ESC>:call Iexec("classify -b " . expand('%'))<CR>
 iabbrev I_KLASS <ESC>:call Iexec("classify -b " . expand('%'))<CR>
 iabbrev I_MODULE <ESC>:call Iexec("classify -b " . expand('%'))<CR>
 iabbrev I_PATH_KLASS <ESC>:call Iexec("classify " . expand('%'))<CR>
+iabbrev I_CODE # encoding: utf-8
 iabbrev I_ENCODE # encoding: utf-8
