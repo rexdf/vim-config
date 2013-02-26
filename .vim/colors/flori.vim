@@ -49,7 +49,7 @@ hi VisualNOS guifg=NONE guibg=grey25 gui=none ctermbg=243
 " syntax highlighting groups
 hi Comment guifg=slategrey guibg=NONE ctermfg=darkgrey
 "
-hi Constant guifg=lightgreen guibg=NONE ctermfg=lightgreen
+hi Constant guifg=lightgreen guibg=NONE ctermfg=47
 hi String guifg=salmon guibg=NONE ctermfg=209
 hi Character guifg=greenyellow guibg=NONE ctermfg=green
 hi Number guifg=red guibg=NONE ctermfg=darkred
