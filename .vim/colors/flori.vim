@@ -64,7 +64,7 @@ hi Statement guifg=khaki guibg=NONE ctermfg=yellow
 hi Keyword guifg=brown gui=bold guibg=NONE ctermfg=88 cterm=bold
 hi Operator guifg=orangered guibg=NONE ctermfg=196
 "
-hi PreProc guifg=indianred guibg=NONE ctermfg=157
+hi PreProc guifg=indianred guibg=NONE ctermfg=167
 "
 hi Type guifg=darkkhaki guibg=NONE ctermfg=green
 "
@@ -79,7 +79,7 @@ hi Error guifg=yellow guibg=orangered ctermfg=yellow ctermbg=196
 hi Todo guifg=orangered guibg=yellow ctermfg=196 ctermbg=yellow
 "
 
-hi rubyInterpolation guifg=moccasin guibg=NONE
+hi rubyInterpolation guifg=moccasin guibg=NONE ctermfg=223
 hi rubyInstanceVariable guifg=orangered guibg=NONE ctermfg=196
 hi rubyClassVariable guifg=#dc1436 guibg=NONE ctermfg=197
 hi rubyGlobalVariable guifg=deeppink guibg=NONE ctermfg=magenta
