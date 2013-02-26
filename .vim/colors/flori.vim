@@ -43,8 +43,8 @@ hi PmenuSbar guifg=black guibg=grey30 ctermfg=white ctermbg=grey
 hi PmenuThumb guifg=black guibg=white ctermfg=white ctermbg=black
 hi Cursor guibg=red guifg=white
 hi CursorIM guibg=red guifg=white
-hi Visual guifg=NONE guibg=#7f693f
-hi VisualNOS guifg=NONE guibg=grey25 gui=none
+hi Visual guifg=NONE guibg=#7f693f ctermbg=94
+hi VisualNOS guifg=NONE guibg=grey25 gui=none ctermbg=243
 
 " syntax highlighting groups
 hi Comment guifg=slategrey guibg=NONE ctermfg=darkgrey
