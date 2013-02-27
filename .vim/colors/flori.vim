@@ -19,9 +19,9 @@ let g:colors_name="flori"
 
 " general highlight groups
 hi Normal guifg=lightyellow guibg=grey20 ctermfg=230 ctermbg=none
-hi ColorColumn guibg=grey25 ctermbg=darkgrey
-"hi CursorColumn guibg=grey30 ctermbg=darkgrey
-"hi CursorLine guibg=grey30 ctermbg=darkgrey
+hi ColorColumn guibg=grey25 ctermbg=234
+"hi CursorColumn guibg=grey30 ctermbg=234
+"hi CursorLine guibg=grey30 ctermbg=234
 hi Folded guibg=grey30 guifg=gold ctermbg=lightgrey ctermfg=black
 hi FoldColumn guibg=grey30 guifg=tan ctermbg=lightgrey ctermfg=black
 hi IncSearch guifg=slategrey guibg=khaki ctermbg=darkred ctermfg=lightred
