@@ -24,12 +24,12 @@ hi ColorColumn guibg=grey25 ctermbg=234
 "hi CursorLine guibg=grey30 ctermbg=234
 hi Folded guibg=grey30 guifg=gold ctermbg=lightgrey ctermfg=black
 hi FoldColumn guibg=grey30 guifg=tan ctermbg=lightgrey ctermfg=black
-hi IncSearch guifg=slategrey guibg=khaki ctermbg=darkred ctermfg=lightred
+hi IncSearch guifg=slategrey guibg=khaki ctermbg=214 ctermfg=darkred
 hi ModeMsg guifg=goldenrod ctermfg=green
 hi MoreMsg guifg=seagreen ctermfg=green
 hi NonText guifg=lightblue guibg=grey30 ctermfg=lightblue
 hi Question guifg=springgreen ctermfg=green
-hi Search guibg=peru guifg=white ctermbg=darkred ctermfg=lightred
+hi Search guibg=peru guifg=white ctermbg=214 ctermfg=darkred
 hi SpecialKey guifg=yellowgreen ctermfg=lightgreen
 hi VertSplit guibg=#c2bfa5 guifg=grey50 gui=none ctermbg=darkgrey ctermfg=lightgrey cterm=none
 hi StatusLine guibg=white guifg=black gui=bold ctermbg=black ctermfg=white
