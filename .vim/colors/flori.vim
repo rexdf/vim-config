@@ -107,10 +107,10 @@ hi link javascriptNumber        Number
 hi link javascriptNull          Constant
 
 " diffing
-hi DiffAdd guibg=green guifg=white ctermbg=green ctermfg=white
-hi DiffChange guibg=blue guifg=white ctermbg=blue ctermfg=white
-hi DiffText guifg=yellow ctermbg=yellow ctermfg=white
-hi DiffDelete guibg=red guifg=white ctermbg=red ctermfg=white
+hi DiffAdd guibg=green guifg=white ctermbg=34 ctermfg=white
+hi DiffChange guibg=orange guifg=white ctermbg=166 ctermfg=white
+hi DiffText guifg=yellow ctermbg=226 ctermfg=124
+hi DiffDelete guibg=red guifg=white ctermbg=160 ctermfg=white
 
 hi ExtraWhitespace ctermbg=124
 match ExtraWhitespace /\s\+$/
