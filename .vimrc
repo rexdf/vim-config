@@ -46,7 +46,7 @@ set showcmd
 set showmatch
 set showmode
 set smarttab
-set statusline=%<%f%m%r%=%(%Bh=%bd%)@%(%l:%c\%)%4P
+set statusline=✇%<%f\ ⚐%y%m%r%*\ ❑%n%=✎%(%l:%c\%)⇨%P
 set swapsync="fsync"
 set termencoding=utf8
 set tildeop
@@ -184,17 +184,17 @@ map <leader>e :e <C-R>=substitute(expand("%:p:h") . "/", " ", "\\\\ ", "g")<CR>
 map <leader>t :TlistToggle<CR>
 map <leader>T :tabe <C-R>=substitute(expand("%:p:h") . "/", " ", "\\\\ ", "g")<CR>
 map <leader>s :split <C-R>=substitute(expand("%:p:h") . "/", " ", "\\\\ ", "g")<CR>
-map <leader>v :!ruby -wc %<CR>
+map <leader>v :call Ccheck()<CR>
 map <leader>c :cd <C-R>=substitute(expand("%:p:h") . "/", " ", "\\\\ ", "g")<CR>
 map <leader>h :call Csymbolhash()<CR>
 map <leader>H :%call Csymbolhash()<CR>
 map <leader>C :call Ccamelunderscore()<CR>
 map <leader>f :!echo %\|pbcopy<CR>
 map <leader>n :new <cfile><CR>
-map <leader>p :w<CR>:silent call system(join([ 'probe', '-c', join([ expand('%'), line('.') ], ':') ], ' ') . ' &')<CR>
-map <leader>P :w<CR>:silent call system('probe -c ' . expand('%') . ' &')<CR>
-map <leader>l :w<CR>:silent call system('irb_connect -l ' . expand('%') . ' &')<CR>
-map <leader>L :w<CR>:silent call system('irb_connect -e "reload!"')<CR>
+map <leader>p :silent w<CR>:call system(join([ 'probe', '-c', join([ expand('%'), line('.') ], ':') ], ' ') . ' &')<CR>
+map <leader>P :silent w<CR>:call system('probe -c ' . expand('%') . ' &')<CR>
+map <leader>l :silent w<CR>:call system('irb_connect -l ' . expand('%') . ' &')<CR>
+map <leader>L :silent w<CR>:call system('irb_connect -e "reload!"')<CR>
 map <leader>E :call Cirb_eval()<CR>
 map <leader>g :call Cgrep(input("Grep? "))<CR>
 map <leader>d :call Cremove()<CR>
@@ -525,6 +525,26 @@ function! Cremove(...)
   else
     redraw!
   endif
+endfunction
+
+function! Ccheck(...)
+  if a:0 == 1
+    let file = expand(a:1)
+  else
+    execute 'silent w'
+    let file = expand('%')
+  endif
+  call system("ruby -c " . file . " >/tmp/error.msg 2>&1") " check errors
+  if v:shell_error == 0
+    call system("ruby -wc " . file . " >/tmp/warnings.msg 2>&1") " check warnings
+    if v:shell_error == 0
+      echo "Syntax: OK"
+    else
+      cf "/tmp/warnings.msg"
+    endif
+  else
+    cf "/tmp/error.msg"
+  end
 endfunction
 
 function! Cirb_eval()
