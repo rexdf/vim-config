@@ -344,6 +344,7 @@ if has("autocmd")
     autocmd FileType ruby setl path+=test/**
     autocmd FileType ruby setl path+=tests/**
     autocmd FileType ruby setl path+=spec/**
+    autocmd BufWritePost *.rb call Ccheck()
   augroup END
 
   augroup javascript
@@ -538,12 +539,14 @@ function! Ccheck(...)
   if v:shell_error == 0
     call system("ruby -wc " . file . " >/tmp/warnings.msg 2>&1") " check warnings
     if v:shell_error == 0
-      echo "Syntax: OK"
+      echon "Syntax: 👍"
     else
-      cf "/tmp/warnings.msg"
+      lf "/tmp/warnings.msg"
+      lopen
     endif
   else
-    cf "/tmp/error.msg"
+    lf "/tmp/error.msg"
+    lopen
   end
 endfunction
 
