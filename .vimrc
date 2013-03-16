@@ -46,7 +46,7 @@ set showcmd
 set showmatch
 set showmode
 set smarttab
-set statusline=\ 💾\ \ %<%f\ 🏁\ \ %y%m%r%*\ ❑\ %n%=✎\ %(%l:%c\%)\ ⇨\ %P
+set statusline=\ ☠\ %<%f\ ⚐\ %y%m%r%*\ ❑\ %n%=✎\ %(%l:%c\%)\ ⇨\ %P
 set swapsync="fsync"
 set termencoding=utf8
 set tildeop
