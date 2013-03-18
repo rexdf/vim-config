@@ -542,11 +542,9 @@ function! Ccheck(...)
       echon "Syntax: 👍"
     else
       lf "/tmp/warnings.msg"
-      lopen
     endif
   else
     lf "/tmp/error.msg"
-    lopen
   end
 endfunction
 
