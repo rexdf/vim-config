@@ -535,16 +535,16 @@ function! Ccheck(...)
     execute 'silent w'
     let file = expand('%')
   endif
-  call system("ruby -c " . file . " >/tmp/error.msg 2>&1") " check errors
+  call system("ruby -c " . file . " >/tmp/errors.err 2>&1") " check errors
   if v:shell_error == 0
-    call system("ruby -wc " . file . " >/tmp/warnings.msg 2>&1") " check warnings
+    call system("ruby -wc " . file . " >/tmp/errors.err 2>&1") " check warnings
     if v:shell_error == 0
       echon "Syntax: 👍"
     else
-      lf "/tmp/warnings.msg"
+      lf "/tmp/errors.err"
     endif
   else
-    lf "/tmp/error.msg"
+    lf "/tmp/errors.err"
   end
 endfunction
 
