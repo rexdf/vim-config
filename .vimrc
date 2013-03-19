@@ -529,22 +529,32 @@ function! Cremove(...)
 endfunction
 
 function! Ccheck(...)
+  echo &filetype
   if a:0 == 1
     let file = expand(a:1)
   else
     execute 'silent w'
     let file = expand('%')
   endif
-  call system("ruby -c " . file . " 2>/tmp/errors.err") " check errors
-  if v:shell_error == 0
-    call system("ruby -wc " . file . " 2>/tmp/errors.err") " check warnings
+  if &filetype == 'ruby'
+    call system("ruby -c " . file . " 2>/tmp/errors.err") " check errors
+    if v:shell_error == 0
+      call system("ruby -wc " . file . " 2>/tmp/errors.err") " check warnings
+      if v:shell_error == 0
+        echon "Syntax: 👍"
+      else
+        lf "/tmp/errors.err"
+      endif
+    else
+      lf "/tmp/errors.err"
+    end
+  elseif &filetype == 'javascript'
+    call system("jsl -process " . file . " 2>/tmp/errors.err")
     if v:shell_error == 0
       echon "Syntax: 👍"
     else
       lf "/tmp/errors.err"
-    endif
-  else
-    lf "/tmp/errors.err"
+    end
   end
 endfunction
 
