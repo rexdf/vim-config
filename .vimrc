@@ -535,9 +535,9 @@ function! Ccheck(...)
     execute 'silent w'
     let file = expand('%')
   endif
-  call system("ruby -c " . file . " >/tmp/errors.err 2>&1") " check errors
+  call system("ruby -c " . file . " 2>/tmp/errors.err") " check errors
   if v:shell_error == 0
-    call system("ruby -wc " . file . " >/tmp/errors.err 2>&1") " check warnings
+    call system("ruby -wc " . file . " 2>/tmp/errors.err") " check warnings
     if v:shell_error == 0
       echon "Syntax: 👍"
     else
