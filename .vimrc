@@ -15,6 +15,7 @@ set clipboard=unnamed
 set dictionary=/usr/dict/words
 set nodigraph
 set encoding=utf8
+set errorfile=/tmp/errors.err
 set errorformat+=%f:%l
 set expandtab shiftwidth=2 tabstop=2
 set foldcolumn=0
@@ -41,6 +42,7 @@ set nosmartindent
 set nowrap
 set number
 set ruler
+set shell=bash
 set shortmess=atI
 set showcmd
 set showmatch
@@ -493,7 +495,7 @@ function! Csymbolhash() range
   execute join([ 'silent ', a:firstline, ',', a:lastline, 's/\([^:]\):\([^:=!', "'", '" ]\{1,\}\) *=>/\1\2:/g' ])
 endfunction
 
-function! Ccreatetags()
+function! CcreateTags()
   call system("bundle exec create_tags &")
 endfunction
 
@@ -536,19 +538,19 @@ function! CcheckSyntax(...)
         redraw
         echo "Syntax: 👍"
       else
-        lf "/tmp/errors.err"
+      lf! "/tmp/errors.err"
       endif
     else
-      lf "/tmp/errors.err"
+      lf! "/tmp/errors.err"
     end
   elseif &filetype == 'javascript'
-    lclose
     call system("jsl -process " . file . " >/tmp/errors.err")
     if v:shell_error == 0
       redraw
       echo "Syntax: 👍"
     else
-      lf "/tmp/errors.err"
+      lf! "/tmp/errors.err"
+      lnf
     end
   end
 endfunction
@@ -564,7 +566,7 @@ command! -bar -nargs=* -complete=file Grep call Cgrep(<f-args>)
 command! -bar -nargs=* -complete=file Classify call Cclassify(<f-args>)
 command! -bar -nargs=* -complete=file PathClassify call CpathClassify(<f-args>)
 command! -bar -nargs=* -complete=file Declassify call Cdeclassify(<f-args>)
-command! Createtags call Ccreatetags()
+command! CreateTags call CcreateTags()
 command! -range Symbolhash <line1>,<line2>call Csymbolhash()
 command! -range PrintGivenRange <line1>,<line2>call PrintGivenRange()
 command! -nargs=* -complete=file Edit call Cedit(<f-args>)
