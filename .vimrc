@@ -550,7 +550,6 @@ function! CcheckSyntax(...)
       echo "Syntax: 👍"
     else
       lf! "/tmp/errors.err"
-      lnf
     end
   end
 endfunction
