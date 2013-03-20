@@ -184,7 +184,7 @@ map <leader>e :e <C-R>=substitute(expand("%:p:h") . "/", " ", "\\\\ ", "g")<CR>
 map <leader>t :TlistToggle<CR>
 map <leader>T :tabe <C-R>=substitute(expand("%:p:h") . "/", " ", "\\\\ ", "g")<CR>
 map <leader>s :split <C-R>=substitute(expand("%:p:h") . "/", " ", "\\\\ ", "g")<CR>
-map <leader>v :call Ccheck()<CR>
+map <leader>v :call CcheckSyntax()<CR>
 map <leader>c :cd <C-R>=substitute(expand("%:p:h") . "/", " ", "\\\\ ", "g")<CR>
 map <leader>h :call Csymbolhash()<CR>
 map <leader>H :%call Csymbolhash()<CR>
@@ -218,14 +218,6 @@ if has("fullscreen")
   end
   " au GUIEnter * set fullscreen
 end
-function! Ctoggle()
-  if &buftype == "quickfix"
-    cclose
-  else
-    copen
-  end
-endfunction
-nnoremap <silent> <F12> :call Ctoggle()<CR>
 
 " Switch Windows
 map <A-j> <C-W>j<C-W>_
@@ -344,13 +336,14 @@ if has("autocmd")
     autocmd FileType ruby setl path+=test/**
     autocmd FileType ruby setl path+=tests/**
     autocmd FileType ruby setl path+=spec/**
-    autocmd BufWritePost *.rb call Ccheck()
+    autocmd BufWritePost *.rb call CcheckSyntax()
   augroup END
 
   augroup javascript
     autocmd!
     autocmd BufNewFile,BufRead *.json setl filetype=javascript
     autocmd FileType javascript setl et sw=2 ts=2 cindent
+    autocmd BufWritePost *.js call CcheckSyntax()
   augroup end
 
   augroup java
@@ -528,8 +521,7 @@ function! Cremove(...)
   endif
 endfunction
 
-function! Ccheck(...)
-  echo &filetype
+function! CcheckSyntax(...)
   if a:0 == 1
     let file = expand(a:1)
   else
@@ -541,7 +533,8 @@ function! Ccheck(...)
     if v:shell_error == 0
       call system("ruby -wc " . file . " 2>/tmp/errors.err") " check warnings
       if v:shell_error == 0
-        echon "Syntax: 👍"
+        redraw
+        echo "Syntax: 👍"
       else
         lf "/tmp/errors.err"
       endif
@@ -549,9 +542,11 @@ function! Ccheck(...)
       lf "/tmp/errors.err"
     end
   elseif &filetype == 'javascript'
-    call system("jsl -process " . file . " 2>/tmp/errors.err")
+    lclose
+    call system("jsl -process " . file . " >/tmp/errors.err")
     if v:shell_error == 0
-      echon "Syntax: 👍"
+      redraw
+      echo "Syntax: 👍"
     else
       lf "/tmp/errors.err"
     end
