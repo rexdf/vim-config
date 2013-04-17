@@ -186,7 +186,8 @@ map <leader>e :e <C-R>=substitute(expand("%:p:h") . "/", " ", "\\\\ ", "g")<CR>
 map <leader>t :TlistToggle<CR>
 map <leader>T :tabe <C-R>=substitute(expand("%:p:h") . "/", " ", "\\\\ ", "g")<CR>
 map <leader>s :split <C-R>=substitute(expand("%:p:h") . "/", " ", "\\\\ ", "g")<CR>
-map <leader>v :call CcheckSyntax()<CR>
+map <leader>v :vsplit <C-R>=substitute(expand("%:p:h") . "/", " ", "\\\\ ", "g")<CR>
+map <leader>V :call CcheckSyntax()<CR>
 map <leader>c :cd <C-R>=substitute(expand("%:p:h") . "/", " ", "\\\\ ", "g")<CR>
 map <leader>h :call Csymbolhash()<CR>
 map <leader>H :%call Csymbolhash()<CR>
@@ -198,7 +199,7 @@ map <leader>P :silent w<CR>:call system('probe -c ' . expand('%') . ' &')<CR>
 map <leader>l :silent w<CR>:call system('irb_connect -l ' . expand('%') . ' &')<CR>
 map <leader>L :silent w<CR>:call system('irb_connect -e "reload!"')<CR>
 map <leader>E :call Cirb_eval()<CR>
-map <leader>g :call Cgrep(input("Grep? "))<CR>
+map <leader>g :call Cgrep()<CR>
 map <leader>d :call Cremove()<CR>
 map <leader>D :call Cremove('force')<CR>
 map K :Grep <cword><CR>
@@ -439,10 +440,13 @@ endfunction
 function! Cgrep(...)
   redraw
   if a:0 == 0
-    let args = [ expand( '<cword>') ]
+    let pattern = getreg('"')
+    let pattern = input("Grep? ", pattern)
+    let args = [ pattern ]
   else
     let args = copy(a:000)
   end
+
   let args_string = join(map(args, 'shellescape(v:val)'), ' ')
   echo 'Grepping ' . args_string . '...'
   set grepformat=%f:%l
