@@ -441,7 +441,7 @@ function! Cgrep(...)
   redraw
   if a:0 == 0
     let pattern = getreg('/')
-    if pattern == "''"
+    if pattern == ""
       let pattern = getreg('"')
     endif
     let pattern = input("Grep? ", pattern)
