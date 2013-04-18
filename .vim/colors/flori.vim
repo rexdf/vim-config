@@ -30,6 +30,7 @@ hi MoreMsg guifg=seagreen ctermfg=green
 hi NonText guifg=lightblue guibg=grey30 ctermfg=lightblue
 hi Question guifg=springgreen ctermfg=green
 hi Search guibg=peru guifg=white ctermbg=214 ctermfg=darkred
+hi Directory guifg=#ff8700 ctermfg=208
 hi SpecialKey guifg=yellowgreen ctermfg=lightgreen
 hi VertSplit guibg=#c2bfa5 guifg=grey50 gui=none ctermbg=darkgrey ctermfg=lightgrey cterm=none
 hi StatusLine guibg=white guifg=black gui=bold ctermbg=black ctermfg=white
