@@ -49,3 +49,6 @@
 [submodule "vim-plugins/vimux.git"]
 	path = vim-plugins/vimux.git
 	url = https://github.com/vim-scripts/vimux.git
+[submodule "vim-plugins/vim-repeat.git"]
+	path = vim-plugins/vim-repeat.git
+	url = https://github.com/tpope/vim-repeat.git
