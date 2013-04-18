@@ -202,10 +202,10 @@ map <leader>E :call Cirb_eval()<CR>
 map <leader>g :call Cgrep()<CR>
 map <leader>d :call Cremove()<CR>
 map <leader>D :call Cremove('force')<CR>
+map <leader>/ :let @/=''<CR>
 map K :Grep <cword><CR>
 
 " Switch of search highlighting
-map <silent> <F9> :nohlsearch<CR>
 if has("fullscreen")
   set fuoptions=maxhorz,maxvert
   function! Cfullscreen()
@@ -440,14 +440,17 @@ endfunction
 function! Cgrep(...)
   redraw
   if a:0 == 0
-    let pattern = getreg('"')
+    let pattern = getreg('/')
+    if pattern == "''"
+      let pattern = getreg('"')
+    endif
     let pattern = input("Grep? ", pattern)
     let args = [ pattern ]
   else
     let args = copy(a:000)
   end
 
-  let args_string = join(map(args, 'shellescape(v:val)'), ' ')
+  let args_string = join(map(copy(args), 'shellescape(v:val)'), ' ')
   echo 'Grepping ' . args_string . '...'
   set grepformat=%f:%l
   set grepprg=search
