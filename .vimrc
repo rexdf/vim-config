@@ -440,9 +440,9 @@ endfunction
 function! Cgrep(...)
   redraw
   if a:0 == 0
-    let pattern = getreg('/')
+    let pattern = getreg('"')
     if pattern == ""
-      let pattern = getreg('"')
+      let pattern = getreg('/')
     endif
     let pattern = input("Grep? ", pattern)
     let args = [ pattern ]
@@ -456,6 +456,7 @@ function! Cgrep(...)
   set grepprg=search
   set hlsearch
   let @/=args[0]
+  let @"=''
   silent execute "silent gr -i -c " . args_string
   copen
   redraw!
