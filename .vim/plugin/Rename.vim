@@ -1,0 +1,1 @@
+../../vim-plugins/Rename.git/plugin/Rename.vim

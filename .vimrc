@@ -339,7 +339,7 @@ if has("autocmd")
     autocmd FileType ruby setl path+=test/**
     autocmd FileType ruby setl path+=tests/**
     autocmd FileType ruby setl path+=spec/**
-    autocmd BufWritePost *.rb call CcheckSyntax()
+    autocmd BufWritePost *.rb,*.rake call CcheckSyntax()
   augroup END
 
   augroup javascript

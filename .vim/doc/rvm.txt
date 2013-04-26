@@ -1,0 +1,1 @@
+../../vim-plugins/vim-rvm/doc/rvm.txt

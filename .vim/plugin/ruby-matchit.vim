@@ -1,0 +1,1 @@
+../../vim-plugins/ruby-matchit/plugin/ruby-matchit.vim
