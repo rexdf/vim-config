@@ -494,9 +494,9 @@ endfunction
 
 function! Ccamelunderscore(...)
   execute 'w'
-  let name = expand('<cWORD>')
+  let name = expand('<cword>')
   let output = system('classify -t ' . name)
-  execute "normal ciW" . output
+  execute "normal ciw" . output
 endfunction
 
 function! Csymbolhash() range
