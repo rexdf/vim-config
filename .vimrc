@@ -445,6 +445,10 @@ function! Cgrep(...)
       let pattern = getreg('/')
     endif
     let pattern = input("Grep? ", pattern)
+    if pattern =~ '^ *$'
+      errecho "No search pattern specified!"
+      return
+    endif
     let args = [ pattern ]
   else
     let args = copy(a:000)
