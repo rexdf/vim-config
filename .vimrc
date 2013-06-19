@@ -33,7 +33,7 @@ set nocompatible
 set nocursorcolumn
 set nocursorline
 set nofoldenable
-set ignorecase
+set noignorecase
 set noincsearch
 set nojoinspaces
 set nopaste
@@ -194,8 +194,26 @@ map <leader>H :%call Csymbolhash()<CR>
 map <leader>C :call Ccamelunderscore()<CR>
 map <leader>f :!echo %\|pbcopy<CR>
 map <leader>n :new <cfile><CR>
-map <leader>p :silent w<CR>:call system(join([ 'probe', '-c', join([ expand('%'), line('.') ], ':') ], ' ') . ' &')<CR>
-map <leader>P :silent w<CR>:call system('probe -c ' . expand('%') . ' &')<CR>
+function! CprobeLine(...)
+  execute 'w'
+  if &filetype == 'cucumber'
+    call system(join([ 'probe', '-t', 'cucumber', '-c', join([ expand('%'), line('.') ], ':') ], ' ') . ' &')
+  else
+    call system(join([ 'probe', '-c', join([ expand('%'), line('.') ], ':') ], ' ') . ' &')
+  endif
+endfunction
+
+function! Cprobe(...)
+  execute 'w'
+  if &filetype == 'cucumber'
+    call system('probe -c -t cucumber ' . expand('%') . ' &')
+  else
+    call system('probe -c ' . expand('%') . ' &')
+  endif
+endfunction
+
+map <leader>p :silent w<CR>:call CprobeLine()<CR>
+map <leader>P :silent w<CR>:call Cprobe()<CR>
 map <leader>l :silent w<CR>:call system('irb_connect -l ' . expand('%') . ' &')<CR>
 map <leader>L :silent w<CR>:call system('irb_connect -e "reload!"')<CR>
 map <leader>E :call Cirb_eval()<CR>
@@ -339,7 +357,7 @@ if has("autocmd")
     autocmd FileType ruby setl path+=test/**
     autocmd FileType ruby setl path+=tests/**
     autocmd FileType ruby setl path+=spec/**
-    autocmd BufWritePost *.rb call CcheckSyntax()
+    autocmd BufWritePost *.rb,*.rake call CcheckSyntax()
   augroup END
 
   augroup javascript
@@ -498,9 +516,9 @@ endfunction
 
 function! Ccamelunderscore(...)
   execute 'w'
-  let name = expand('<cWORD>')
+  let name = expand('<cword>')
   let output = system('classify -t ' . name)
-  execute "normal ciW" . output
+  execute "normal ciw" . output
 endfunction
 
 function! Csymbolhash() range
