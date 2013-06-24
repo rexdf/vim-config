@@ -280,6 +280,8 @@ vnoremap > >gv
 " Marks
 nnoremap ' `
 nnoremap ` '
+" yank to eol similar to D
+map Y y$
 
 if has("autocmd")
   " Auto Command - Hooks
