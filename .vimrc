@@ -568,7 +568,8 @@ function! CcheckSyntax(...)
       call system("ruby -wc " . file . " 2>/tmp/errors.err") " check warnings
       if v:shell_error == 0
         redraw
-        echo "Syntax: 👍"
+        "echo "Syntax: 👍"
+        echo "Syntax: ✓"
       else
       lf! "/tmp/errors.err"
       endif
@@ -579,7 +580,8 @@ function! CcheckSyntax(...)
     call system("jsl -process " . file . " >/tmp/errors.err")
     if v:shell_error == 0
       redraw
-      echo "Syntax: 👍"
+      "echo "Syntax: 👍"
+      echo "Syntax: ✓"
     else
       lf! "/tmp/errors.err"
     end
