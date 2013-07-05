@@ -1,0 +1,1 @@
+../../vim-plugins/Gundo.git/plugin/gundo.vim
