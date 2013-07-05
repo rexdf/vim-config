@@ -1,1 +1,0 @@
-../../vim-plugins/Gundo.git/autoload/gundo.vim
