@@ -55,3 +55,6 @@
 [submodule "vim-plugins/Gundo.git"]
 	path = vim-plugins/Gundo.git
 	url = https://github.com/vim-scripts/Gundo.git
+[submodule "vim-plugins/undotree.git"]
+	path = vim-plugins/undotree.git
+	url = https://github.com/mbbill/undotree.git
