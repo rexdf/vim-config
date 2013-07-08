@@ -62,9 +62,9 @@ set winminheight=0
 if has("persistent_undo")
   set undofile
   if has("win32") || has("win64")
-    set undodir=$TMP
+    set undodir=$TMP/vim-$USER
   else
-    set undodir=/tmp
+    set undodir=/tmp/vim-$USER
   end
 end
 if has("win32") || has("win64")
@@ -196,6 +196,7 @@ map <leader>f :!echo %\|pbcopy<CR>
 map <leader>n :new <cfile><CR>
 map <silent> <leader>q :call CtoggleList("Quickfix List", 'c')<CR>
 map <silent> <leader>Q :call CtoggleList("Location List", 'l')<CR>
+map <silent> <leader>u :UndotreeToggle<CR>
 
 function! GetBufferList()
   redir =>buflist
