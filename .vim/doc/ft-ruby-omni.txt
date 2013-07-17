@@ -1,0 +1,1 @@
+../../vim-plugins/vim-ruby.git/doc/ft-ruby-omni.txt

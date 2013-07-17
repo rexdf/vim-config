@@ -1,0 +1,1 @@
+../../vim-plugins/vim-ruby.git/compiler/rake.vim
