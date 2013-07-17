@@ -13,9 +13,6 @@
 [submodule "vim-plugins/vim-surround"]
 	path = vim-plugins/vim-surround
 	url = https://github.com/tpope/vim-surround.git
-[submodule "ruby-matchit"]
-	path = ruby-matchit
-	url = https://github.com/vim-scripts/ruby-matchit.git
 [submodule "vim-plugins/ruby-matchit"]
 	path = vim-plugins/ruby-matchit
 	url = https://github.com/vim-scripts/ruby-matchit.git
