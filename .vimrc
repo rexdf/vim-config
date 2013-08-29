@@ -12,7 +12,7 @@ end
 set clipboard=unnamed
 "set textwidth=80
 set clipboard=unnamed
-set dictionary=/usr/dict/words
+set dictionary=/usr/dict/words dictionary+=/usr/share/dict/words
 set nodigraph
 set encoding=utf8
 set errorfile=/tmp/errors.err
