@@ -648,7 +648,7 @@ endfunction
 
 " Abbreviations
 iabclear
-iabbrev I_MFG Mit freundlichen Grüssen,<CR><CR>Florian Frank
+iabbrev I_MFG Mit freundlichen Grüssen<CR><CR>Florian Frank
 iabbrev I_DATE <ESC>:call Itime("%F")<CR>
 iabbrev I_DATETIME <ESC>:call Itime("%F %T")<CR>
 iabbrev I_TIME <ESC>:call Itime("%T")<CR>
