@@ -8,5 +8,5 @@ git clean -fdx
 for plugin in vim-plugins/*/
 do
   p=`basename $plugin`
-  stow --verbose --dir=vim-plugins --target=.vim --defer='(Readme|README|readme|cecutil|CONTRIBUTING.markdown|tags)' "$p"
+  stow --verbose --dir=vim-plugins --target=.vim --defer='(Readme|README|readme|cecutil|CONTRIBUTING.markdown|tags|doc/tags)' "$p"
 done
