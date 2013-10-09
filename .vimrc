@@ -552,10 +552,10 @@ function! Cdeclassify(...)
 endfunction
 
 function! Ccamelunderscore(...)
-  execute 'w'
+  silent w
   let name = expand('<cword>')
   let output = system('classify -t ' . name)
-  execute "normal ciw" . output
+  execute "silent normal ciw" . output
 endfunction
 
 function! Csymbolhash() range
@@ -594,7 +594,7 @@ function! CcheckSyntax(...)
   if a:0 == 1
     let file = expand(a:1)
   else
-    execute 'silent w'
+    silent w
     let file = expand('%')
   endif
   if &filetype == 'ruby'
@@ -624,7 +624,9 @@ function! CcheckSyntax(...)
 endfunction
 
 function! CstripSpaces(...)
+  let oldpos = getpos(".")
   %!strip_spaces
+  call setpos('.', oldpos)
 endfunction
 
 function! Cirb_eval()
