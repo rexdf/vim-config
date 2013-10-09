@@ -625,7 +625,7 @@ endfunction
 
 function! CstripSpaces(...)
   let oldpos = getpos(".")
-  %!strip_spaces
+  silent %!strip_spaces
   call setpos('.', oldpos)
 endfunction
 
