@@ -392,6 +392,7 @@ if has("autocmd")
     autocmd FileType ruby setl path+=test/**
     autocmd FileType ruby setl path+=tests/**
     autocmd FileType ruby setl path+=spec/**
+    autocmd BufWritePre *.rb,*.rake call CstripSpaces()
     autocmd BufWritePost *.rb,*.rake call CcheckSyntax()
   augroup END
 
@@ -399,6 +400,7 @@ if has("autocmd")
     autocmd!
     autocmd BufNewFile,BufRead *.json setl filetype=javascript
     autocmd FileType javascript setl et sw=2 ts=2 cindent
+    autocmd BufWritePre *.rb,*.rake call CstripSpaces()
     autocmd BufWritePost *.js call CcheckSyntax()
   augroup end
 
@@ -619,6 +621,10 @@ function! CcheckSyntax(...)
       lf! "/tmp/errors.err"
     end
   end
+endfunction
+
+function! CstripSpaces(...)
+  %!strip_spaces
 endfunction
 
 function! Cirb_eval()
