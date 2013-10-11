@@ -274,23 +274,14 @@ if has("fullscreen")
 end
 
 " Switch Windows
-map <A-j> <C-W>j<C-W>_
-map ∆ <C-W>j<C-W>_
-map <A-k> <C-W>k<C-W>_
-map ˚ <C-W>k<C-W>_
-" Switch Buffers
-map <A-l> <ESC>:bn<CR>
-map ¬ <ESC>:bn<CR>
-map <A-h> <ESC>:bp<CR>
-map ˙ <ESC>:bp<CR>
-map <A-=> <C-W>=
-map ≠ <C-W>=
-map <A-,> <C-W>+
-map ≥ <C-W>+
-map <A-.> <C-W>-
-map ≤ <C-W>-
+map <C-j> <C-W>j<C-W>_
+map <C-k> <C-W>k<C-W>_
 
-" Configure navigation keys
+" Switch Buffers
+map <C-l> <ESC>:bn<CR>
+map <C-h> <ESC>:bp<CR>
+
+" Don't use these for navigation navigation keys
 noremap <Up> <Nop>
 noremap <Down> <Nop>
 noremap <Left> <Nop>
@@ -301,6 +292,8 @@ noremap <Home> <Nop>
 noremap <End> <Nop>
 noremap <PageUp> <Nop>
 noremap <PageDown> <Nop>
+
+" Navigate command line
 cnoremap <C-0> <Home>
 cnoremap <C-^> <Home>
 cnoremap <C-$> <End>
@@ -308,11 +301,15 @@ cnoremap <C-h> <Left>
 cnoremap <C-l> <Right>
 cnoremap <C-k> <Up>
 cnoremap <C-j> <Down>
+
+" Moving text objects left and right
 vnoremap < <gv
 vnoremap > >gv
-" Marks
+
+" Marks switch them
 nnoremap ' `
 nnoremap ` '
+
 " yank to eol similar to D
 map Y y$
 
