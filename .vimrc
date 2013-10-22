@@ -193,7 +193,7 @@ map <leader>h :call Csymbolhash()<CR>
 map <leader>H :%call Csymbolhash()<CR>
 map <leader>C :call Ccamelunderscore()<CR>
 map <leader>f :!echo %\|reattach-to-user-namespace pbcopy<CR>
-map <leader>y :w!reattach-to-user-namespace pbcopy<CR>
+map <silent> <leader>y :w !reattach-to-user-namespace pbcopy<CR><CR>
 map <leader>n :new <cfile><CR>
 map <silent> <leader>q :call CtoggleList("Quickfix List", 'c')<CR>
 map <silent> <leader>Q :call CtoggleList("Location List", 'l')<CR>
