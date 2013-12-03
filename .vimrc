@@ -388,9 +388,8 @@ if has("autocmd")
     autocmd FileType ruby setl path+=ext/**
     autocmd FileType ruby setl path+=lib/**
     autocmd FileType ruby setl path+=test/**
-    autocmd FileType ruby setl path+=tests/**  
+    autocmd FileType ruby setl path+=tests/**
     autocmd FileType ruby setl path+=spec/**
-    autocmd BufWritePre *.rb,*.rake :%s/\s\+$//e
     autocmd BufWritePost *.rb,*.rake call CcheckSyntax()
   augroup END
 
@@ -398,7 +397,6 @@ if has("autocmd")
     autocmd!
     autocmd BufNewFile,BufRead *.json setl filetype=javascript
     autocmd FileType javascript setl et sw=2 ts=2 cindent
-    autocmd BufWritePre *.rb,*.rake :%s/\s\+$//e
     autocmd BufWritePost *.js call CcheckSyntax()
   augroup end
 
@@ -471,6 +469,8 @@ if has("autocmd")
   augroup END
 
   au! BufRead,BufNewFile *.rl   set filetype=ragel
+
+  autocmd BufWritePre *.rb,*.rake,*.slim,*.haml,*.js :%s/\s\+$//e
 end
 
 function! Cfind(...)
