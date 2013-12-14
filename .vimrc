@@ -84,10 +84,10 @@ colorscheme flori
 if has("gui_running")
   set guipty
   hi Pmenu ctermbg=Grey guibg=DarkGrey
-	set guioptions-=r
-	set guioptions-=R
-	set guioptions-=l
-	set guioptions-=L
+  set guioptions-=r
+  set guioptions-=R
+  set guioptions-=l
+  set guioptions-=L
   if exists("+guioptions")
     set guioptions+=c
   end
@@ -287,6 +287,15 @@ noremap <Up> <Nop>
 noremap <Down> <Nop>
 noremap <Left> <Nop>
 noremap <Right> <Nop>
+
+vmap  <expr>  <LEFT>   DVB_Drag('left')
+vmap  <expr>  <RIGHT>  DVB_Drag('right')
+vmap  <expr>  <DOWN>   DVB_Drag('down')
+vmap  <expr>  <UP>     DVB_Drag('up')
+vmap  <expr>  D        DVB_Duplicate()
+" Remove any introduced trailing whitespace after moving...
+let g:DVB_TrimWS = 1
+
 noremap <Ins> <Nop>
 noremap <End> <Nop>
 noremap <Home> <Nop>
@@ -470,7 +479,7 @@ if has("autocmd")
 
   au! BufRead,BufNewFile *.rl   set filetype=ragel
 
-  autocmd BufWritePre *.rb,*.rake,*.slim,*.haml,*.js :%s/\s\+$//e
+  autocmd BufWritePre *.rb,*.rake,*.slim,*.haml,*.js,*.c,*.cpp,*.h :%s/\s\+$//e
 end
 
 function! Cfind(...)
